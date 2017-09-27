@@ -16,6 +16,43 @@ import javax.ejb.LocalBean;
 @LocalBean
 public class Bid {
 
+    public Bid(User bidder, Double amount, Integer ID) {
+        this.bidder = bidder;
+        this.amount = amount;
+        this.ID = ID;
+    }
+
+    public Bid() {
+    }
+    
+    User bidder;
+    Double amount;
+    Integer ID;
+
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    public User getBidder() {
+        return bidder;
+    }
+
+    public void setBidder(User bidder) {
+        this.bidder = bidder;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public Integer getID() {
+        return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
 }

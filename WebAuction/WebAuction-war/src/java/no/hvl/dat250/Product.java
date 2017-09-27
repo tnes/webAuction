@@ -5,16 +5,30 @@
  */
 package no.hvl.dat250;
 
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.ejb.Stateless;
+import javax.ejb.LocalBean;
 
 /**
  *
- * @author Vidar
+ * @author S1ndr3
  */
-@Named(value = "product")
-@Dependent
+@Stateless
+@LocalBean
 public class Product {
+
+    public Product(int id, String name, String picture, String features, double rating, boolean published, long remainingTime, User seller) {
+        this.id = id;
+        this.name = name;
+        this.picture = picture;
+        this.features = features;
+        this.rating = rating;
+        this.published = published;
+        this.remainingTime = remainingTime;
+        this.seller = seller;
+    }
+
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
     
     private int id;
     
@@ -23,7 +37,8 @@ public class Product {
     private String features;
     
     private double rating;
-    // private Bid currentBid;
+
+    private Bid currentBid;
     
     private boolean published;
     
@@ -94,11 +109,18 @@ public class Product {
     public void setSeller(User seller) {
         this.seller = seller;
     }
+    
+     public Bid getCurrentBid() {
+        return currentBid;
+    }
+
+    public void setCurrentBid(Bid currentBid) {
+        this.currentBid = currentBid;
+    }
 
     /**
      * Creates a new instance of Product
      */
     public Product() {
     }
-    
 }

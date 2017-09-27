@@ -5,6 +5,7 @@
  */
 package no.hvl.dat250;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 
@@ -16,6 +17,33 @@ import javax.ejb.LocalBean;
 @LocalBean
 public class AuctionPlace {
 
+    public AuctionPlace(List<User> users, Integer ID) {
+        this.users = users;
+        this.ID = ID;
+    }
+
+    public AuctionPlace() {
+    }
+    
+    List<User> users;
+    Integer ID;
+
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    
+        public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public Integer getID() {
+        return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
 }
