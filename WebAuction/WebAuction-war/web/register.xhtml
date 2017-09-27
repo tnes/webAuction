@@ -14,9 +14,9 @@ and open the template in the editor.
     <body>
         <h1>Register</h1>
         <h:form>
-            <p>Username: <h:inputText id="username" value="${user.username}" /></p>
-            <p>Password: <h:inputHidden id="password" value="${user.password}" /><p>
-            <h:commandButton id="register" value="Register" action="${user.register}" />
+            <p>Username: <h:inputText id="username" value="#{user.username}" /></p>
+            <p>Password: <h:inputHidden id="password" value="#{user.password}" /><p>
+            <h:commandButton id="register" value="Register" action="#{user.register}" />
         </h:form>
     </body>
 </html>

@@ -14,11 +14,11 @@ and open the template in the editor.
     <h:body>
         <h1>Publish Product</h1>
         <h:form>
-            <p>Product name: <h:inputText id="productname" value="${product.name}" /></p>
-            <p>Image source: <h:inputText id="imagesource" value="${product.picture}" /></p>
-            <p>Features: <h:inputTextarea id="features" value="${product.features}" /></p>
-            <h:commandButton id="savewithoutpublishing" value="Save without publishing" action="${product.savewithoutpublishing}" />
-            <h:commandButton id="publish" value="Publish" action="${product.publish}" />
+            <p>Product name: <h:inputText id="productname" value="#{product.name}" /></p>
+            <p>Image source: <h:inputText id="imagesource" value="#{product.picture}" /></p>
+            <p>Features: <h:inputTextarea id="features" value="#{product.features}" /></p>
+            <h:commandButton id="savewithoutpublishing" value="Save without publishing" action="#{product.savewithoutpublishing}" />
+            <h:commandButton id="publish" value="Publish" action="#{product.publish}" />
         </h:form>
     </h:body>
 </html>
