@@ -34,6 +34,18 @@ public class User {
         
     }
     
+     public User(int id, double rating, ProductCatalog catalog, List<Feedback> feedback, String username, String password, boolean loggedIn, List<Product> acquiredProducts, List<Product> soldProducts) {
+        this.id = id;
+        this.rating = rating;
+        this.catalog = catalog;
+        this.feedback = feedback;
+        this.username = username;
+        this.password = password;
+        this.loggedIn = loggedIn;
+        this.acquiredProducts = acquiredProducts;
+        this.soldProducts = soldProducts;
+    }
+    
     public int getId() {
         return id;
     }
@@ -76,6 +88,38 @@ public class User {
     
     public String logIn() {
         return ""; // "SUCCESS" or "FAIL"
+    }
+    
+    public ProductCatalog getCatalog() {
+        return catalog;
+    }
+
+    public void setCatalog(ProductCatalog catalog) {
+        this.catalog = catalog;
+    }
+
+    public List<Feedback> getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(List<Feedback> feedback) {
+        this.feedback = feedback;
+    }
+
+    public List<Product> getAcquiredProducts() {
+        return acquiredProducts;
+    }
+
+    public void setAcquiredProducts(List<Product> acquiredProducts) {
+        this.acquiredProducts = acquiredProducts;
+    }
+
+    public List<Product> getSoldProducts() {
+        return soldProducts;
+    }
+
+    public void setSoldProducts(List<Product> soldProducts) {
+        this.soldProducts = soldProducts;
     }
     
 }
