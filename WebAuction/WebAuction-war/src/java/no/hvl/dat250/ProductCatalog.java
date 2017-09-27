@@ -5,9 +5,12 @@
  */
 package no.hvl.dat250;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
@@ -15,8 +18,10 @@ import javax.ejb.LocalBean;
  */
 @Stateless
 @LocalBean
-public class ProductCatalog {
+@Entity
+public class ProductCatalog implements Serializable{
     
+    @Id
     Integer ID;
     private List<Product> products; 
 

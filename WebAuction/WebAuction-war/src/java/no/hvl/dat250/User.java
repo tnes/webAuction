@@ -5,9 +5,12 @@
  */
 package no.hvl.dat250;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.ejb.LocalBean;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
@@ -15,8 +18,10 @@ import javax.ejb.LocalBean;
  */
 @Stateful
 @LocalBean
-public class User {
+@Entity
+public class User implements Serializable{
     
+    @Id
     private int id;
     
     private double rating;
