@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -26,25 +28,28 @@ public class Bid implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
     
-    // Define relationship (one-to-many etc.)
-    private User bidder;
+    //
+    @ManyToOne
+    @JoinColumn(name = "User_id")
+    private Product product;
+    
     private Double amount;
     
     public Bid() {
     }
 
-    public Bid(User bidder, Double amount, Long ID) {
-        this.bidder = bidder;
+    public Bid(Product product, Double amount, Long ID) {
+        this.product = product;
         this.amount = amount;
         this.ID = ID;
     }
 
-    public User getBidder() {
-        return bidder;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setBidder(User bidder) {
-        this.bidder = bidder;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Double getAmount() {
