@@ -10,7 +10,12 @@ import java.util.List;
 import javax.ejb.Stateful;
 import javax.ejb.LocalBean;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -22,25 +27,29 @@ import javax.persistence.Id;
 public class User implements Serializable{
     
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private Double rating;
-    
-    // Define relationship (one-to-many etc.)
-    private ProductCatalog catalog;
-    
-    // Define relationship (one-to-many etc.)
-    private List<Feedback> feedback;
-    
+    private Double rating;    
     private String username;
     private String password;
     private Boolean loggedIn;
     
     // Define relationship (one-to-many etc.)
+    @OneToMany (mappedBy = "id")    
     private List<Product> acquiredProducts;
     
     // Define relationship (one-to-many etc.)
+    @OneToMany (mappedBy = "id")
     private List<Product> soldProducts;
+    
+       // Define relationship (one-to-many etc.)
+    @OneToOne(mappedBy = "id")
+    private ProductCatalog catalog;
+    
+    // Define relationship (one-to-many etc.)
+    @OneToMany(mappedBy = "id")
+    private List<Feedback> feedback;
     
     public User() {
         

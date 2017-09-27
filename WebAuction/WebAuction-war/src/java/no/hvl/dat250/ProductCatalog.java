@@ -10,7 +10,10 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,13 +25,15 @@ import javax.persistence.Id;
 public class ProductCatalog implements Serializable{
     
     @Id
-    private Long ID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     
     // Define relationship (one-to-many etc.)
+    @OneToMany(mappedBy = "id")
     private List<Product> products; 
 
     public ProductCatalog(Long ID, List<Product> products) {
-        this.ID = ID;
+        this.id = ID;
         this.products = products;
     }
 
@@ -36,11 +41,11 @@ public class ProductCatalog implements Serializable{
     }
 
     public Long getID() {
-        return ID;
+        return id;
     }
 
     public void setID(Long ID) {
-        this.ID = ID;
+        this.id = ID;
     }
 
     public List<Product> getProducts() {

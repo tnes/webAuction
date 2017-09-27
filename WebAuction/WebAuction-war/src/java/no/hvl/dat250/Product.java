@@ -9,7 +9,10 @@ import java.io.Serializable;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -21,6 +24,7 @@ import javax.persistence.Id;
 public class Product implements Serializable{
     
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
     private String name;
@@ -28,16 +32,18 @@ public class Product implements Serializable{
     private String features;
     
     private Double rating;
-
-    // Define relationship (one-to-many etc.)
-    private Bid currentBid;
     
     private Boolean published;
     
     private Long remainingTime; // currentTimeMillis
     
     // Define relationship (one-to-many etc.)
+    @OneToOne(mappedBy = "id")
     private User seller;
+    
+    // Define relationship (one-to-many etc.)
+    @OneToOne(mappedBy = "id")
+    private Bid currentBid;
     
      public Product(Long id, String name, String picture, String features, double rating, boolean published, long remainingTime, User seller) {
         this.id = id;

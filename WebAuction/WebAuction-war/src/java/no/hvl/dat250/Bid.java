@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -21,6 +23,7 @@ import javax.persistence.Id;
 public class Bid implements Serializable{
     
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
     
     // Define relationship (one-to-many etc.)
