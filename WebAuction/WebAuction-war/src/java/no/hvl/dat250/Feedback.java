@@ -22,18 +22,18 @@ import javax.persistence.Id;
 public class Feedback implements Serializable{
     
     @Id
-    Integer ID;
+    private Long ID;
     
     // Define relationship (one-to-many etc.)
-    User author; 
+    private User author; 
   
-    Double rating;
-    String content;
+    private Double rating;
+    private String content;
     
     public Feedback() {
     }
 
-    public Feedback(User author, Integer ID, Double rating, String content) {
+    public Feedback(User author, Long ID, Double rating, String content) {
         this.author = author;
         this.ID = ID;
         this.rating = rating;
@@ -48,11 +48,11 @@ public class Feedback implements Serializable{
         this.author = author;
     }
 
-    public Integer getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(Integer ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 

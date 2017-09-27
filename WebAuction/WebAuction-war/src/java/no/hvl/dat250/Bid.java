@@ -21,16 +21,16 @@ import javax.persistence.Id;
 public class Bid implements Serializable{
     
     @Id
-    Integer ID;
+    private Long ID;
     
     // Define relationship (one-to-many etc.)
-    User bidder;
-    Double amount;
+    private User bidder;
+    private Double amount;
     
     public Bid() {
     }
 
-    public Bid(User bidder, Double amount, Integer ID) {
+    public Bid(User bidder, Double amount, Long ID) {
         this.bidder = bidder;
         this.amount = amount;
         this.ID = ID;
@@ -52,11 +52,11 @@ public class Bid implements Serializable{
         this.amount = amount;
     }
 
-    public Integer getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(Integer ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 }

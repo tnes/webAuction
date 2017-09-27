@@ -22,24 +22,31 @@ import javax.persistence.Id;
 public class User implements Serializable{
     
     @Id
-    private int id;
+    private Long id;
     
-    private double rating;
+    private Double rating;
+    
+    // Define relationship (one-to-many etc.)
     private ProductCatalog catalog;
+    
+    // Define relationship (one-to-many etc.)
     private List<Feedback> feedback;
     
     private String username;
     private String password;
-    private boolean loggedIn;
+    private Boolean loggedIn;
     
-    List<Product> acquiredProducts;
-    List<Product> soldProducts;
+    // Define relationship (one-to-many etc.)
+    private List<Product> acquiredProducts;
+    
+    // Define relationship (one-to-many etc.)
+    private List<Product> soldProducts;
     
     public User() {
         
     }
     
-     public User(int id, double rating, ProductCatalog catalog, List<Feedback> feedback, String username, String password, boolean loggedIn, List<Product> acquiredProducts, List<Product> soldProducts) {
+     public User(Long id, double rating, ProductCatalog catalog, List<Feedback> feedback, String username, String password, boolean loggedIn, List<Product> acquiredProducts, List<Product> soldProducts) {
         this.id = id;
         this.rating = rating;
         this.catalog = catalog;
@@ -51,11 +58,11 @@ public class User implements Serializable{
         this.soldProducts = soldProducts;
     }
     
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

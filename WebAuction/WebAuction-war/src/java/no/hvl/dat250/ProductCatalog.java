@@ -22,10 +22,12 @@ import javax.persistence.Id;
 public class ProductCatalog implements Serializable{
     
     @Id
-    Integer ID;
+    private Long ID;
+    
+    // Define relationship (one-to-many etc.)
     private List<Product> products; 
 
-    public ProductCatalog(Integer ID, List<Product> products) {
+    public ProductCatalog(Long ID, List<Product> products) {
         this.ID = ID;
         this.products = products;
     }
@@ -33,11 +35,11 @@ public class ProductCatalog implements Serializable{
     public ProductCatalog() {
     }
 
-    public Integer getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(Integer ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 
@@ -48,7 +50,4 @@ public class ProductCatalog implements Serializable{
     public void setProducts(List<Product> products) {
         this.products = products;
     }
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
 }

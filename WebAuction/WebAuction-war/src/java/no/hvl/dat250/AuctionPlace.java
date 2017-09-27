@@ -22,15 +22,15 @@ import javax.persistence.Id;
 public class AuctionPlace implements Serializable{
     
     @Id
-    Integer ID;
+    private Long ID;
     
     // Define relationship (one-to-many etc.)
-    List<User> users;
+    private List<User> users;
     
     public AuctionPlace() {
     }
 
-    public AuctionPlace(List<User> users, Integer ID) {
+    public AuctionPlace(List<User> users, Long ID) {
         this.users = users;
         this.ID = ID;
     }
@@ -43,11 +43,11 @@ public class AuctionPlace implements Serializable{
         this.users = users;
     }
 
-    public Integer getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(Integer ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 }
