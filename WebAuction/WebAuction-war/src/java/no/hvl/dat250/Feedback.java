@@ -5,9 +5,12 @@
  */
 package no.hvl.dat250;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
@@ -15,26 +18,27 @@ import javax.ejb.LocalBean;
  */
 @Stateless
 @LocalBean
-public class Feedback {
+@Entity
+public class Feedback implements Serializable{
+    
+    @Id
+    private Long ID;
+    
+    // Define relationship (one-to-many etc.)
+    private User author; 
+  
+    private Double rating;
+    private String content;
+    
+    public Feedback() {
+    }
 
-    public Feedback(User author, Integer ID, Double rating, String content) {
+    public Feedback(User author, Long ID, Double rating, String content) {
         this.author = author;
         this.ID = ID;
         this.rating = rating;
         this.content = content;
-    }
-
-    public Feedback() {
-    }
-    
-    User author;    
-    Integer ID;
-    Double rating;
-    String content;
-    
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    }    
 
     public User getAuthor() {
         return author;
@@ -44,11 +48,11 @@ public class Feedback {
         this.author = author;
     }
 
-    public Integer getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(Integer ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 

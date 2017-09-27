@@ -5,9 +5,12 @@
  */
 package no.hvl.dat250;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
@@ -15,21 +18,22 @@ import javax.ejb.LocalBean;
  */
 @Stateless
 @LocalBean
-public class AuctionPlace {
+@Entity
+public class AuctionPlace implements Serializable{
+    
+    @Id
+    private Long ID;
+    
+    // Define relationship (one-to-many etc.)
+    private List<User> users;
+    
+    public AuctionPlace() {
+    }
 
-    public AuctionPlace(List<User> users, Integer ID) {
+    public AuctionPlace(List<User> users, Long ID) {
         this.users = users;
         this.ID = ID;
     }
-
-    public AuctionPlace() {
-    }
-    
-    List<User> users;
-    Integer ID;
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
     
         public List<User> getUsers() {
         return users;
@@ -39,11 +43,11 @@ public class AuctionPlace {
         this.users = users;
     }
 
-    public Integer getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(Integer ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 }

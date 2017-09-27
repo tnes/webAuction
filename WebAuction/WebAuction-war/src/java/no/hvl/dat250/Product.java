@@ -5,8 +5,11 @@
  */
 package no.hvl.dat250;
 
+import java.io.Serializable;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
@@ -14,9 +17,29 @@ import javax.ejb.LocalBean;
  */
 @Stateless
 @LocalBean
-public class Product {
+@Entity
+public class Product implements Serializable{
+    
+    @Id
+    private Long id;
+    
+    private String name;
+    private String picture; // May change
+    private String features;
+    
+    private Double rating;
 
-    public Product(int id, String name, String picture, String features, double rating, boolean published, long remainingTime, User seller) {
+    // Define relationship (one-to-many etc.)
+    private Bid currentBid;
+    
+    private Boolean published;
+    
+    private Long remainingTime; // currentTimeMillis
+    
+    // Define relationship (one-to-many etc.)
+    private User seller;
+    
+     public Product(Long id, String name, String picture, String features, double rating, boolean published, long remainingTime, User seller) {
         this.id = id;
         this.name = name;
         this.picture = picture;
@@ -26,28 +49,12 @@ public class Product {
         this.remainingTime = remainingTime;
         this.seller = seller;
     }
-    
-    private int id;
-    
-    private String name;
-    private String picture; // May change
-    private String features;
-    
-    private double rating;
 
-    private Bid currentBid;
-    
-    private boolean published;
-    
-    private long remainingTime; // currentTimeMillis
-    
-    private User seller;
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

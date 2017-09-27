@@ -5,9 +5,12 @@
  */
 package no.hvl.dat250;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.ejb.LocalBean;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
@@ -15,26 +18,35 @@ import javax.ejb.LocalBean;
  */
 @Stateful
 @LocalBean
-public class User {
+@Entity
+public class User implements Serializable{
     
-    private int id;
+    @Id
+    private Long id;
     
-    private double rating;
+    private Double rating;
+    
+    // Define relationship (one-to-many etc.)
     private ProductCatalog catalog;
+    
+    // Define relationship (one-to-many etc.)
     private List<Feedback> feedback;
     
     private String username;
     private String password;
-    private boolean loggedIn;
+    private Boolean loggedIn;
     
-    List<Product> acquiredProducts;
-    List<Product> soldProducts;
+    // Define relationship (one-to-many etc.)
+    private List<Product> acquiredProducts;
+    
+    // Define relationship (one-to-many etc.)
+    private List<Product> soldProducts;
     
     public User() {
         
     }
     
-     public User(int id, double rating, ProductCatalog catalog, List<Feedback> feedback, String username, String password, boolean loggedIn, List<Product> acquiredProducts, List<Product> soldProducts) {
+     public User(Long id, double rating, ProductCatalog catalog, List<Feedback> feedback, String username, String password, boolean loggedIn, List<Product> acquiredProducts, List<Product> soldProducts) {
         this.id = id;
         this.rating = rating;
         this.catalog = catalog;
@@ -46,11 +58,11 @@ public class User {
         this.soldProducts = soldProducts;
     }
     
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -9,23 +9,22 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import no.hvl.dat250.User;
 
 /**
  *
  * @author TorkelNes
  */
-@Named(value = "userController")
+@Named(value = "auctionPlace")
 @SessionScoped
-public class UserController implements Serializable {
+public class AuctionPlaceController implements Serializable {
 
     @EJB
-    private User user;
+    private no.hvl.dat250.AuctionPlace auctionPlace;
 
     /**
-     * Creates a new instance of UserController
+     * Creates a new instance of AuctionPlace
      */
-    public UserController() {
+    public AuctionPlaceController() {
     }
     
 }

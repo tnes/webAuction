@@ -9,23 +9,22 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import no.hvl.dat250.User;
 
 /**
  *
  * @author TorkelNes
  */
-@Named(value = "userController")
+@Named(value = "feedback")
 @SessionScoped
-public class UserController implements Serializable {
+public class FeedbackController implements Serializable {
 
     @EJB
-    private User user;
+    private no.hvl.dat250.Feedback feedback;
 
     /**
-     * Creates a new instance of UserController
+     * Creates a new instance of Feedback
      */
-    public UserController() {
+    public FeedbackController() {
     }
     
 }

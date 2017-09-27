@@ -5,8 +5,11 @@
  */
 package no.hvl.dat250;
 
+import java.io.Serializable;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
@@ -14,20 +17,24 @@ import javax.ejb.LocalBean;
  */
 @Stateless
 @LocalBean
-public class Bid {
+@Entity
+public class Bid implements Serializable{
+    
+    @Id
+    private Long ID;
+    
+    // Define relationship (one-to-many etc.)
+    private User bidder;
+    private Double amount;
+    
+    public Bid() {
+    }
 
-    public Bid(User bidder, Double amount, Integer ID) {
+    public Bid(User bidder, Double amount, Long ID) {
         this.bidder = bidder;
         this.amount = amount;
         this.ID = ID;
     }
-
-    public Bid() {
-    }
-    
-    User bidder;
-    Double amount;
-    Integer ID;
 
     public User getBidder() {
         return bidder;
@@ -45,11 +52,11 @@ public class Bid {
         this.amount = amount;
     }
 
-    public Integer getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(Integer ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 }
