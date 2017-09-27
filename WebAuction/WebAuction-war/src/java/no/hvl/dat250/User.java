@@ -43,7 +43,7 @@ public class User implements Serializable{
     @OneToMany (mappedBy = "id")
     private List<Product> soldProducts;
     
-       // Define relationship (one-to-many etc.)
+    // Define relationship (one-to-many etc.)
     @OneToOne(mappedBy = "id")
     private ProductCatalog catalog;
     
