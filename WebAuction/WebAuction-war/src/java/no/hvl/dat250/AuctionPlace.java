@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -27,7 +28,7 @@ public class AuctionPlace implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
     
-    // Define relationship (one-to-many etc.)
+    @OneToMany(mappedBy = "auctionplace")
     private List<User> users;
     
     public AuctionPlace() {
