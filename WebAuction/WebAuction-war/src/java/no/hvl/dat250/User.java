@@ -42,16 +42,18 @@ public class User implements Serializable{
     private String email;
     private String phonenumber;
     
-    @OneToOne (mappedBy = "owner")
-    private List<ProductCatalog> acquiredProducts;
+    // Riktig med OneToOne når det er flere, selvstendige objekter? 
     
     @OneToOne (mappedBy = "owner")
-    private List<ProductCatalog> soldProducts;
+    private ProductCatalog acquiredProducts;
     
-    @OneToOne(mappedBy = "owner")
-    private List<ProductCatalog> productCatalog;
+    @OneToOne (mappedBy = "owner")
+    private ProductCatalog soldProducts;
     
-    @OneToMany(mappedBy = "author")
+    @OneToOne (mappedBy = "owner")
+    private ProductCatalog productCatalog;
+    
+    @OneToMany (mappedBy = "author")
     private List<Feedback> feedback;
     
     public User() {
@@ -110,19 +112,19 @@ public class User implements Serializable{
         this.feedback = feedback;
     }
 
-    public List<ProductCatalog> getAcquiredProducts() {
+    public ProductCatalog getAcquiredProducts() {
         return acquiredProducts;
     }
 
-    public void setAcquiredProducts(List<ProductCatalog> acquiredProducts) {
+    public void setAcquiredProducts(ProductCatalog acquiredProducts) {
         this.acquiredProducts = acquiredProducts;
     }
 
-    public List<ProductCatalog> getSoldProducts() {
+    public ProductCatalog getSoldProducts() {
         return soldProducts;
     }
 
-    public void setSoldProducts(List<ProductCatalog> soldProducts) {
+    public void setSoldProducts(ProductCatalog soldProducts) {
         this.soldProducts = soldProducts;
     }
     
@@ -142,11 +144,11 @@ public class User implements Serializable{
         return email;
     } 
     
-      public List<ProductCatalog> getProductCatalog() {
+      public ProductCatalog getProductCatalog() {
         return productCatalog;
     }
 
-    public void setProductCatalog(List<ProductCatalog> productCatalog) {
+    public void setProductCatalog(ProductCatalog productCatalog) {
         this.productCatalog = productCatalog;
     }
     

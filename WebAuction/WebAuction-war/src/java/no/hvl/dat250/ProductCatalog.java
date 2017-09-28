@@ -32,7 +32,7 @@ public class ProductCatalog implements Serializable{
     @OneToOne
     private User owner;
     
-    @OneToMany (mappedBy="catalog")
+    @OneToMany (mappedBy = "catalog")
     private List<Product> products; 
 
     public ProductCatalog() {
