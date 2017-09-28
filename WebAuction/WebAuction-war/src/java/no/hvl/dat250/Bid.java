@@ -28,7 +28,6 @@ public class Bid implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
     
-    //
     @ManyToOne
     @JoinColumn(name = "User_id")
     private Product product;
@@ -36,12 +35,6 @@ public class Bid implements Serializable{
     private Double amount;
     
     public Bid() {
-    }
-
-    public Bid(Product product, Double amount, Long ID) {
-        this.product = product;
-        this.amount = amount;
-        this.ID = ID;
     }
 
     public Product getProduct() {

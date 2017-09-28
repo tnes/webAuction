@@ -38,14 +38,7 @@ public class Feedback implements Serializable{
     private String content;
     
     public Feedback() {
-    }
-
-    public Feedback(User author, Long ID, Double rating, String content) {
-        this.author = author;
-        this.ID = ID;
-        this.rating = rating;
-        this.content = content;
-    }    
+    }  
 
     public User getAuthor() {
         return author;

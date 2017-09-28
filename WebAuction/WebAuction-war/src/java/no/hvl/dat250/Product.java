@@ -27,7 +27,7 @@ public class Product implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long ID;
     
     private String name;
     private String picture; // May change
@@ -43,16 +43,6 @@ public class Product implements Serializable{
     @ManyToOne
     @JoinColumn(name = "Catalog_id")
     private ProductCatalog catalog;
-    
-    //Mappet
-    @ManyToOne
-    @JoinColumn(name = "User_id")
-    private User seller;
-    
-    //Mappet
-    @ManyToOne
-    @JoinColumn(name = "User_id")
-    private User buyer;
         
     //TODO
     @OneToOne(mappedBy = "id")
@@ -63,24 +53,13 @@ public class Product implements Serializable{
      */
     public Product() {
     }
-    
-     public Product(Long id, String name, String picture, String features, double rating, boolean published, long remainingTime, User seller) {
-        this.id = id;
-        this.name = name;
-        this.picture = picture;
-        this.features = features;
-        this.rating = rating;
-        this.published = published;
-        this.remainingTime = remainingTime;
-        this.seller = seller;
-    }
 
     public Long getId() {
-        return id;
+        return ID;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.ID = id;
     }
 
     public String getName() {
@@ -130,14 +109,6 @@ public class Product implements Serializable{
     public void setRemainingTime(long remainingTime) {
         this.remainingTime = remainingTime;
     }
-
-    public User getSeller() {
-        return seller;
-    }
-
-    public void setSeller(User seller) {
-        this.seller = seller;
-    }
     
      public Bid getCurrentBid() {
         return currentBid;
@@ -145,5 +116,29 @@ public class Product implements Serializable{
 
     public void setCurrentBid(Bid currentBid) {
         this.currentBid = currentBid;
+    }
+    
+     public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public void setPublished(Boolean published) {
+        this.published = published;
+    }
+
+    public void setRemainingTime(Long remainingTime) {
+        this.remainingTime = remainingTime;
+    }
+
+    public void setCatalog(ProductCatalog catalog) {
+        this.catalog = catalog;
+    }
+
+    public Boolean getPublished() {
+        return published;
+    }
+
+    public ProductCatalog getCatalog() {
+        return catalog;
     }
 }

@@ -28,7 +28,7 @@ public class ProductCatalog implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long ID;
     
     @OneToOne
     @JoinColumn(name = "User_id")
@@ -39,7 +39,7 @@ public class ProductCatalog implements Serializable{
     private List<Product> products; 
 
     public ProductCatalog(Long ID, List<Product> products) {
-        this.id = ID;
+        this.ID = ID;
         this.products = products;
     }
 
@@ -47,11 +47,11 @@ public class ProductCatalog implements Serializable{
     }
 
     public Long getID() {
-        return id;
+        return ID;
     }
 
     public void setID(Long ID) {
-        this.id = ID;
+        this.ID = ID;
     }
 
     public List<Product> getProducts() {

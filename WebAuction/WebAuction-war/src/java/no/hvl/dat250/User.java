@@ -29,7 +29,7 @@ public class User implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long ID;
     
     private Double rating;    
     private String username;
@@ -57,11 +57,11 @@ public class User implements Serializable{
     }
     
     public Long getId() {
-        return id;
+        return ID;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.ID = id;
     }
 
     public double getRating() {
@@ -138,7 +138,13 @@ public class User implements Serializable{
     
     public String getEmail(){
         return email;
+    } 
+    
+      public List<ProductCatalog> getProductCatalog() {
+        return productCatalog;
     }
-    
-    
+
+    public void setProductCatalog(List<ProductCatalog> productCatalog) {
+        this.productCatalog = productCatalog;
+    }
 }
