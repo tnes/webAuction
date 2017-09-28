@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -27,7 +29,9 @@ public class Feedback implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
     
-    // Define relationship (one-to-many etc.)
+    // Mappet
+    @ManyToOne
+    @JoinColumn(name = "User_id")
     private User author; 
   
     private Double rating;

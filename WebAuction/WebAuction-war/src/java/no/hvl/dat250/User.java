@@ -13,9 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
@@ -24,6 +24,7 @@ import javax.persistence.OneToOne;
 @Stateful
 @LocalBean
 @Entity
+@Table(name = "\"User\"") //User is a reservered SQL keyword - this escapes this
 public class User implements Serializable{
     
     @Id
@@ -34,37 +35,25 @@ public class User implements Serializable{
     private String username;
     private String password;
     private Boolean loggedIn;
+    private String email;
+    private String phonenumber;
     
-    // Define relationship (one-to-many etc.)
-    @OneToMany (mappedBy = "id")    
-    private List<Product> acquiredProducts;
+    @OneToOne (mappedBy = "owner")
+    private List <ProductCatalog> acquiredProducts;
     
-    // Define relationship (one-to-many etc.)
-    @OneToMany (mappedBy = "id")
-    private List<Product> soldProducts;
+    @OneToOne (mappedBy = "owner")
+    private List<ProductCatalog> soldProducts;
     
-    // Define relationship (one-to-many etc.)
-    @OneToOne(mappedBy = "id")
-    private ProductCatalog catalog;
+    //Mapped
+    @OneToOne(mappedBy = "owner")
+    private List<ProductCatalog> productCatalog;
     
-    // Define relationship (one-to-many etc.)
-    @OneToMany(mappedBy = "id")
+    //Mapped
+    @OneToMany(mappedBy = "author")
     private List<Feedback> feedback;
     
     public User() {
         
-    }
-    
-     public User(Long id, double rating, ProductCatalog catalog, List<Feedback> feedback, String username, String password, boolean loggedIn, List<Product> acquiredProducts, List<Product> soldProducts) {
-        this.id = id;
-        this.rating = rating;
-        this.catalog = catalog;
-        this.feedback = feedback;
-        this.username = username;
-        this.password = password;
-        this.loggedIn = loggedIn;
-        this.acquiredProducts = acquiredProducts;
-        this.soldProducts = soldProducts;
     }
     
     public Long getId() {
@@ -110,14 +99,6 @@ public class User implements Serializable{
     public String logIn() {
         return ""; // "SUCCESS" or "FAIL"
     }
-    
-    public ProductCatalog getCatalog() {
-        return catalog;
-    }
-
-    public void setCatalog(ProductCatalog catalog) {
-        this.catalog = catalog;
-    }
 
     public List<Feedback> getFeedback() {
         return feedback;
@@ -127,20 +108,37 @@ public class User implements Serializable{
         this.feedback = feedback;
     }
 
-    public List<Product> getAcquiredProducts() {
+    public List<ProductCatalog> getAcquiredProducts() {
         return acquiredProducts;
     }
 
-    public void setAcquiredProducts(List<Product> acquiredProducts) {
+    public void setAcquiredProducts(List<ProductCatalog> acquiredProducts) {
         this.acquiredProducts = acquiredProducts;
     }
 
-    public List<Product> getSoldProducts() {
+    public List<ProductCatalog> getSoldProducts() {
         return soldProducts;
     }
 
-    public void setSoldProducts(List<Product> soldProducts) {
+    public void setSoldProducts(List<ProductCatalog> soldProducts) {
         this.soldProducts = soldProducts;
     }
+    
+    public void setPhoneNumber(String n){
+        this.phonenumber = n;
+    }
+    
+    public String getPhoneNumber(){
+        return phonenumber; 
+    }
+    
+    public void setEmail(String n){
+        this.email = n;
+    }
+    
+    public String getEmail(){
+        return email;
+    }
+    
     
 }

@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -37,13 +39,30 @@ public class Product implements Serializable{
     
     private Long remainingTime; // currentTimeMillis
     
-    // Define relationship (one-to-many etc.)
-    @OneToOne(mappedBy = "id")
+    //Mappet
+    @ManyToOne
+    @JoinColumn(name = "Catalog_id")
+    private ProductCatalog catalog;
+    
+    //Mappet
+    @ManyToOne
+    @JoinColumn(name = "User_id")
     private User seller;
     
-    // Define relationship (one-to-many etc.)
+    //Mappet
+    @ManyToOne
+    @JoinColumn(name = "User_id")
+    private User buyer;
+        
+    //TODO
     @OneToOne(mappedBy = "id")
     private Bid currentBid;
+    
+      /**
+     * Creates a new instance of Product
+     */
+    public Product() {
+    }
     
      public Product(Long id, String name, String picture, String features, double rating, boolean published, long remainingTime, User seller) {
         this.id = id;
@@ -126,11 +145,5 @@ public class Product implements Serializable{
 
     public void setCurrentBid(Bid currentBid) {
         this.currentBid = currentBid;
-    }
-
-    /**
-     * Creates a new instance of Product
-     */
-    public Product() {
     }
 }

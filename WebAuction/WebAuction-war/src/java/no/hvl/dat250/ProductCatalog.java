@@ -13,7 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -28,8 +30,12 @@ public class ProductCatalog implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    // Define relationship (one-to-many etc.)
-    @OneToMany(mappedBy = "id")
+    @OneToOne
+    @JoinColumn(name = "User_id")
+    private User owner;
+    
+    // Mapped
+    @OneToMany(mappedBy = "catalog")
     private List<Product> products; 
 
     public ProductCatalog(Long ID, List<Product> products) {
