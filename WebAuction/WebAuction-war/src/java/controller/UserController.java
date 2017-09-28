@@ -9,13 +9,15 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import no.hvl.dat250.User;
 
 /**
  *
  * @author TorkelNes
  */
-@Named(value = "userController")
+@Named(value = "user")
 @SessionScoped
 public class UserController implements Serializable {
 
@@ -33,13 +35,23 @@ public class UserController implements Serializable {
     }
     
     public String login() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        String result;
+        boolean isValid;
         
+        this.username = request.getParameter("username");
+        this.password = request.getParameter("password");
         
+        isValid = this.user.isValid(this.username, this.password);
         
-        
-        
-        
-        
+        if(isValid) {
+            this.user.fetchUser(this.username);
+            result = "/products";
+        } else {
+            //Bruker er ugyldig
+            result = "login";
+        }
        return null; 
     }
     

@@ -5,17 +5,25 @@
  */
 package no.hvl.dat250;
 
+import database.AbstractFacade;
+import database.MessageFacade;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.ejb.LocalBean;
+import javax.jms.Message;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.Table;
 
 /**
@@ -26,7 +34,16 @@ import javax.persistence.Table;
 @LocalBean
 @Entity
 @Table(name = "\"User\"") //User is a reservered SQL keyword - this escapes this
-public class User implements Serializable{
+@NamedQueries({
+    @NamedQuery(name = "User.findByUsername", query = "SELECT u from User u WHERE u.username = :username") })
+public class User extends AbstractFacade<User> {
+    @PersistenceContext(unitName = "WebAuction-warPU")
+    private EntityManager em;
+    
+    @Override
+    protected EntityManager getEntityManager() {
+    return em;
+    }
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,7 +58,7 @@ public class User implements Serializable{
     private Boolean loggedIn;
     private String email;
     private String phonenumber;
-    
+
     // Riktig med OneToOne når det er flere, selvstendige objekter? 
     
     @OneToOne (mappedBy = "owner")
@@ -57,8 +74,28 @@ public class User implements Serializable{
     private List<Feedback> feedback;
     
     public User() {
-        
+        super(User.class);
     }
+    
+    public boolean isValid(String username, String password) {
+        boolean isValid;
+        Query createNamedQuery = getEntityManager().createNamedQuery("User.findByUsername");
+        createNamedQuery.setParameter("username", username);
+        
+        if(createNamedQuery.getResultList().size() > 0) {
+            isValid = true;
+        } else {
+            isValid = false;
+        }
+        return isValid;
+    }
+    
+    public User fetchUser(String username) {
+        Query createNamedQuery = getEntityManager().createNamedQuery("User.findByUsername");
+        createNamedQuery.setParameter("username", username);
+            return (User) createNamedQuery.getSingleResult();
+    }
+    
     
     public Long getId() {
         return ID;
