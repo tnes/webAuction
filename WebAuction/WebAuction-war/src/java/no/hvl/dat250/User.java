@@ -39,14 +39,14 @@ public class User implements Serializable{
     private String phonenumber;
     
     @OneToOne (mappedBy = "owner")
-    private ProductCatalog acquiredProducts;
+    private List <ProductCatalog> acquiredProducts;
     
     @OneToOne (mappedBy = "owner")
-    private ProductCatalog soldProducts;
+    private List<ProductCatalog> soldProducts;
     
     //Mapped
     @OneToOne(mappedBy = "owner")
-    private ProductCatalog productCatalog;
+    private List<ProductCatalog> productCatalog;
     
     //Mapped
     @OneToMany(mappedBy = "author")
@@ -99,14 +99,6 @@ public class User implements Serializable{
     public String logIn() {
         return ""; // "SUCCESS" or "FAIL"
     }
-    
-    public ProductCatalog getCatalog() {
-        return catalog;
-    }
-
-    public void setCatalog(ProductCatalog catalog) {
-        this.catalog = catalog;
-    }
 
     public List<Feedback> getFeedback() {
         return feedback;
@@ -116,19 +108,19 @@ public class User implements Serializable{
         this.feedback = feedback;
     }
 
-    public List<Product> getAcquiredProducts() {
+    public List<ProductCatalog> getAcquiredProducts() {
         return acquiredProducts;
     }
 
-    public void setAcquiredProducts(List<Product> acquiredProducts) {
+    public void setAcquiredProducts(List<ProductCatalog> acquiredProducts) {
         this.acquiredProducts = acquiredProducts;
     }
 
-    public List<Product> getSoldProducts() {
+    public List<ProductCatalog> getSoldProducts() {
         return soldProducts;
     }
 
-    public void setSoldProducts(List<Product> soldProducts) {
+    public void setSoldProducts(List<ProductCatalog> soldProducts) {
         this.soldProducts = soldProducts;
     }
     
