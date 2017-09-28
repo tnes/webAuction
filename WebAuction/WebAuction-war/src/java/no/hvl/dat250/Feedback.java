@@ -29,9 +29,7 @@ public class Feedback implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
     
-    // Mappet
     @ManyToOne
-    @JoinColumn(name = "User_id")
     private User author; 
   
     private Double rating;

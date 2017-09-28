@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -38,14 +39,11 @@ public class Product implements Serializable{
     private Boolean published;
     
     private Long remainingTime; // currentTimeMillis
-    
-    //Mappet
+     
     @ManyToOne
-    @JoinColumn(name = "Catalog_id")
     private ProductCatalog catalog;
         
-    //TODO
-    @OneToOne(mappedBy = "id")
+    @OneToOne
     private Bid currentBid;
     
       /**

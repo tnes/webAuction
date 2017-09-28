@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -28,18 +29,13 @@ public class AuctionPlace implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
     
-    @OneToMany(mappedBy = "auctionplace")
+    @OneToMany (mappedBy="auctionplace")
     private List<User> users;
     
     public AuctionPlace() {
     }
-
-    public AuctionPlace(List<User> users, Long ID) {
-        this.users = users;
-        this.ID = ID;
-    }
     
-        public List<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 

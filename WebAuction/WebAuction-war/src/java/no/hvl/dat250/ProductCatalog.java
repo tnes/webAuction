@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -31,17 +30,10 @@ public class ProductCatalog implements Serializable{
     private Long ID;
     
     @OneToOne
-    @JoinColumn(name = "User_id")
     private User owner;
     
-    // Mapped
-    @OneToMany(mappedBy = "catalog")
+    @OneToMany (mappedBy="catalog")
     private List<Product> products; 
-
-    public ProductCatalog(Long ID, List<Product> products) {
-        this.ID = ID;
-        this.products = products;
-    }
 
     public ProductCatalog() {
     }
@@ -60,5 +52,13 @@ public class ProductCatalog implements Serializable{
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+    
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }

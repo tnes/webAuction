@@ -12,8 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -28,8 +29,7 @@ public class Bid implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
     
-    @ManyToOne
-    @JoinColumn(name = "User_id")
+    @OneToOne (mappedBy="currentBid")
     private Product product;
     
     private Double amount;

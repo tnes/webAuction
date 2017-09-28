@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -33,9 +32,7 @@ public class User implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
     
-    // Mappet
     @ManyToOne
-    @JoinColumn(name = "Auction_id")
     private AuctionPlace auctionplace;
     
     private Double rating;    
@@ -46,16 +43,14 @@ public class User implements Serializable{
     private String phonenumber;
     
     @OneToOne (mappedBy = "owner")
-    private List <ProductCatalog> acquiredProducts;
+    private List<ProductCatalog> acquiredProducts;
     
     @OneToOne (mappedBy = "owner")
     private List<ProductCatalog> soldProducts;
     
-    //Mapped
     @OneToOne(mappedBy = "owner")
     private List<ProductCatalog> productCatalog;
     
-    //Mapped
     @OneToMany(mappedBy = "author")
     private List<Feedback> feedback;
     
@@ -153,5 +148,13 @@ public class User implements Serializable{
 
     public void setProductCatalog(List<ProductCatalog> productCatalog) {
         this.productCatalog = productCatalog;
+    }
+    
+    public AuctionPlace getAuctionplace() {
+        return auctionplace;
+    }
+
+    public void setAuctionplace(AuctionPlace auctionplace) {
+        this.auctionplace = auctionplace;
     }
 }
