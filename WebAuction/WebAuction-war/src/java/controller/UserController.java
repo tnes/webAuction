@@ -23,8 +23,8 @@ public class UserController implements Serializable {
 
     @EJB
     private User user;
-    private String username;
-    private String password;
+     String username;
+     String password;
 
     /**
      * Creates a new instance of UserController

@@ -5,6 +5,7 @@
  */
 package database;
 
+import controller.AbstractFacade;
 import javax.ejb.Stateless;
 import javax.jms.Message;
 import javax.persistence.EntityManager;

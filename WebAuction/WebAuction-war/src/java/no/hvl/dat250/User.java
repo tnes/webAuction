@@ -5,7 +5,7 @@
  */
 package no.hvl.dat250;
 
-import database.AbstractFacade;
+import controller.AbstractFacade;
 import database.MessageFacade;
 import java.io.Serializable;
 import java.util.List;

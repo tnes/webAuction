@@ -9,7 +9,7 @@
         <h1>Login</h1>
         <h:form>
             <p>Username: <h:inputText id="username" value="#{user.username}" /></p>
-            <p>Password: <h:inputHidden id="password" value="#{user.password}" /></p>
+            <p>Password: <h:inputText id="password" value="#{user.password}" /></p>
             <h:commandButton id="login" value="Submit" action="#{user.login}" />
         </h:form>
         <h:commandButton id="register" value="Register" action="#{user.register}" />
