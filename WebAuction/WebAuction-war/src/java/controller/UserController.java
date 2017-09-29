@@ -24,6 +24,8 @@ public class UserController implements Serializable {
     @EJB
     private User user;
      String username;
+     String email;
+     String phonenumber;
      String password;
 
     /**
@@ -43,7 +45,7 @@ public class UserController implements Serializable {
         this.username = request.getParameter("username");
         this.password = request.getParameter("password");
         
-        isValid = this.user.isValid(this.username, this.password);
+        isValid = this.user.isValidLogin(this.username, this.password);
         
         if(isValid) {
             this.user.fetchUser(this.username);
@@ -53,6 +55,21 @@ public class UserController implements Serializable {
             result = "login";
         }
        return null; 
+    }
+    
+    public String register() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        String result;
+        
+        this.username = request.getParameter("username");
+        this.email = request.getParameter("email");
+        this.phonenumber = request.getParameter("phonenumber");
+        this.password = request.getParameter("password");
+        
+        
+        
+        return "";
     }
     
 }

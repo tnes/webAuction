@@ -35,7 +35,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "\"User\"") //User is a reservered SQL keyword - this escapes this
 @NamedQueries({
-    @NamedQuery(name = "User.findByUsername", query = "SELECT u from User u WHERE u.username = :username") })
+    @NamedQuery(name = "User.findByUsername", query = "SELECT u from User u WHERE u.username = :username"),
+    @NamedQuery(name = "User.createUser", query = "")
+    })
 public class User extends AbstractFacade<User> {
     @PersistenceContext(unitName = "WebAuction-warPU")
     private EntityManager em;
@@ -77,7 +79,7 @@ public class User extends AbstractFacade<User> {
         super(User.class);
     }
     
-    public boolean isValid(String username, String password) {
+    public boolean isValidLogin(String username, String password) {
         boolean isValid;
         Query createNamedQuery = getEntityManager().createNamedQuery("User.findByUsername");
         createNamedQuery.setParameter("username", username);
@@ -88,6 +90,14 @@ public class User extends AbstractFacade<User> {
             isValid = false;
         }
         return isValid;
+    }
+    
+    public boolean isValidRegister(String un, String em, String pn, String pw) {
+        if(isValidUsername(un) && isValidEmail(em) && isValidPhonenumber(pn) && isValidPassword(pw)) {
+            Query createNamedQuery = getEntityManager().createNamedQuery("User.findByUsername");
+            createNamedQuery.setParameter("username", username);
+        }
+        return true;
     }
     
     public User fetchUser(String username) {
@@ -195,5 +205,21 @@ public class User extends AbstractFacade<User> {
 
     public void setAuctionplace(AuctionPlace auctionplace) {
         this.auctionplace = auctionplace;
+    }
+    
+    private boolean isValidUsername(String username) {
+        return true;
+    }
+    
+    private boolean isValidPassword(String password) {
+        return true;
+    }
+    
+    private boolean isValidEmail(String email) {
+        return true;
+    }
+    
+    private boolean isValidPhonenumber(String phonenumber) {
+        return true;
     }
 }
